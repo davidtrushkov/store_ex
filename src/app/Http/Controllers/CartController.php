@@ -91,9 +91,9 @@ class CartController extends Controller {
 
         // set total to amount * the book price
         $total = $amount * $book->price;
-
-        // Select ALL from cart where the member_id = to the current logged in user
-        $cart = Cart::where('member_id', '=', $member_id);
+        
+        // Select ALL from cart where the member_id = to the current logged in user, and where the book_id = the book ID being updated
+        $cart = Cart::where('member_id', '=', $member_id)->where('book_id', '=', $book_id);
 
         // Update your cart
         $cart->update(array(
